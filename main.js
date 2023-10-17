@@ -240,3 +240,21 @@ const pets = [
       imageUrl: "http://lsae2.iypcdn.com/static//modules/uploads/photos/language1/dino-live-22.jpg?119"
     }
   ];
+
+  const appDiv = document.querySelector("#app")
+
+  appDiv.innerHTML = `<div class="card" style="width: 18rem;">
+  <div class="card-header">
+    Name
+  </div>
+  <img src="https://loremflickr.com/300/200/dog" class="card-img-top" alt="...">
+  <div class="card-body">
+  <h5 class="card-title">Color</h5>
+    <p class="card-text">Special Skills</p>
+  </div>
+  <div class="card-body">
+  </div>
+  <div class="card-footer text-body-secondary">
+  Type
+ </div>
+</div>`
