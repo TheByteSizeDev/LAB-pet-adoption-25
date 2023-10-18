@@ -263,4 +263,3 @@ const pets = [
   }
 
   appDiv.innerHTML = domString
-  
