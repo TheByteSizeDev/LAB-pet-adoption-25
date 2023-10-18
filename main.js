@@ -8,7 +8,7 @@ const pets = [
       imageUrl: "http://kittentoob.com/wp-content/uploads/2015/06/funny-cat-with-a-towel.jpg",
     },
     {
-        id: 2,
+      id: 2,
       name: "Trouble",
       color: "Brown",
       specialSkill: "Just picks the tomatoes off of a sandwich instead of requesting a whole new sandwich.",
@@ -216,7 +216,7 @@ const pets = [
       imageUrl: "https://assets.creationmuseum.org/img/pages/1703-DinoDen-TwoCard.jpg"
     },
     {
-        id: 28,
+      id: 28,
       name: "Nala",
       color: "Purple",
       specialSkill: "Dances when he has to.",
@@ -224,7 +224,7 @@ const pets = [
       imageUrl: "https://tailandfur.com/wp-content/uploads/2016/03/40-Scary-and-Funny-Cat-Pictures-8.jpg"
     },
     {
-        id: 29,
+      id: 29,
       name: "Oscar",
       color: "Green",
       specialSkill: "Gives hugs with appropriate pressure and for the right length of time.",
@@ -232,7 +232,7 @@ const pets = [
       imageUrl: "http://img.izismile.com/img/img2/20090219/cats_02.jpg"
     },
     {
-        id: 30,
+      id: 30,
       name: "Lucy",
       color: "Red",
       specialSkill: "Doesn’t get weirded out by the word “moist.”",
@@ -240,3 +240,27 @@ const pets = [
       imageUrl: "http://lsae2.iypcdn.com/static//modules/uploads/photos/language1/dino-live-22.jpg?119"
     }
   ];
+
+  const appDiv = document.querySelector("#app")
+
+  let domString = ""
+  for(pet of pets){
+    domString += `<div class="card" style="width: 18rem;">
+      <div class="card-header">
+        ${pet.name}
+      </div>
+      <img src="${pet.imageUrl}" class="card-img-top" alt="...">
+      <div class="card-body">
+      <h5 class="card-title">${pet.color}</h5>
+        <p class="card-text">${pet.specialSkill}</p>
+      </div>
+      <div class="card-body">
+      </div>
+      <div class="card-footer text-body-secondary">
+      ${pet.type}
+     </div>
+    </div>`
+  }
+
+  appDiv.innerHTML = domString
+  
