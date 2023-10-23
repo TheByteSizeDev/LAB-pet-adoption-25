@@ -1,4 +1,3 @@
-
 const pies = [{
     id: 1,
     name: "Buttermilk Pie",
@@ -6,6 +5,7 @@ const pies = [{
     filling: "buttermilk",
     vegan: false,
     bakeTemp: 400,
+    skillLevel: "easy"
 },
 {
     id: 2,
@@ -14,6 +14,7 @@ const pies = [{
     filling: "buttermilk",
     vegan: true,
     bakeTemp: 400,
+    skillLevel: "medium"
 },
 {
     id: 3,
@@ -22,6 +23,7 @@ const pies = [{
     filling: "buttermilk",
     vegan: false,
     bakeTemp: 400,
+    skillLevel: "medium"
 },
 {
     id: 4,
@@ -30,7 +32,14 @@ const pies = [{
     filling: "buttermilk",
     vegan: true,
     bakeTemp: 400,
+    skillLevel: "hard"
 }]
+
+// TODO: Make an event listener and filter function for new buttons
+// TODO: Clean up and move everything to functions
+// TODO: Add form validation
+
+
 // Select our HTML div
 const app = document.querySelector("#app")
 
