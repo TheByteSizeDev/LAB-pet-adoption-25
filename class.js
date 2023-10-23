@@ -35,6 +35,7 @@ const pies = [{
     skillLevel: "hard"
 }]
 
+// TODO: Show alternative for skillLevel
 // TODO: Make an event listener and filter function for new buttons
 // TODO: Clean up and move everything to functions
 // TODO: Add form validation
@@ -130,9 +131,11 @@ const createPie = (event) =>{
     const newPieObj ={
         id: pies.length + 1,
         name: document.querySelector("#pieName").value,
+        crustType: document.querySelector("#pieCrust").value,
         filling: document.querySelector("#pieFilling").value,
         vegan: document.querySelector("#isVegan").checked,
         bakeTemp: document.querySelector("#pieTemp").value,
+        skillLevel: document.querySelector('input')
     }
 
     pies.push(newPieObj)
