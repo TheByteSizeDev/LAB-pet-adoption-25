@@ -72,14 +72,16 @@ const renderToDom = (array) => {
     let domString = ""
     // Loop over the array and create our pie cards
     for(object of array){
-        domString += `<div class="card" style="width: 18rem;">
+        const show = object.vegan ? "" : "none"
+        domString += `<div class="card" style="width: 15rem;">
         <div class="card-body">
         <h5 class="card-title">${object.name}</h5>
+        <p style="display:${show};">🌿</p>
         <h6 class="card-subtitle mb-2 text-body-secondary">${object.filling}</h6>
         <p class="card-text">${object.bakeTemp}</p>
         <button class="btn btn-danger" id="delete--${object.id}">Delete</button>
         </div>
-        </div>` 
+        </div>`
     }
 
     
