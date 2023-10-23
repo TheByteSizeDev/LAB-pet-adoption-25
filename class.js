@@ -135,7 +135,7 @@ const createPie = (event) =>{
         filling: document.querySelector("#pieFilling").value,
         vegan: document.querySelector("#isVegan").checked,
         bakeTemp: document.querySelector("#pieTemp").value,
-        skillLevel: document.querySelector('input')
+        skillLevel: document.querySelector('input[name="skill-level"]:checked').id
     }
 
     pies.push(newPieObj)
