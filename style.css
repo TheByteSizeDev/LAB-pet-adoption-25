@@ -1,0 +1,27 @@
+#app {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    margin: 20px;
+    text-align: center;
+}
+
+form {
+    margin: 20px;
+    padding: 20px;
+    border-style: double;
+    border-radius: 5px;
+    width: 50%;
+}
+
+#filter-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {
+    margin: 20px 20px;
+}
