@@ -35,43 +35,11 @@ const pies = [{
     skillLevel: "hard"
 }]
 
-// TODO: Show alternative for skillLevel
-// TODO: Make an event listener and filter function for new buttons
-// TODO: Clean up and move everything to functions
-// TODO: Add form validation
 
-
-// Select our HTML div
-const app = document.querySelector("#app")
-
-const deletePie = (event) => {
-
-    if(event.target.id.includes("delete")){
-        // Do Our Delete Logic
-        // determine which object I'm delete by the id
-        // id = "delete--3"
-        const [, id] = event.target.id.split("--")
-
-        // Identify where in the array that object is
-        const index = pies.findIndex(obj => obj.id === Number(id))
-
-        // Remove the object from the array
-        pies.splice(index, 1)
-
-        // Re-render with the array
-        renderToDom(pies)
-    }
-}
-
-app.addEventListener("click", deletePie)
-
-
-// Function to render cards to DOM that takes an array
 const renderToDom = (array) => {
 
-    // Create our domstring so we can push our cards to it
     let domString = ""
-    // Loop over the array and create our pie cards
+    
     for(object of array){
         const show = object.vegan ? "" : "none"
         domString += `<div class="card" style="width: 15rem;">
@@ -85,63 +53,83 @@ const renderToDom = (array) => {
         </div>`
     }
 
-    
-    // Set our cards to our div's inner HTML
     app.innerHTML = domString
 }
 
-// Invoke our function and send in our full pie array
-// This will put our cards on the page on load
-renderToDom(pies)
-
-// Now let's make our vegan button work!
-// Select our HTML button
-const veganButton = document.querySelector("#vegan")
-
-// Create our function to filter out our vegan pies
-const filter = () => {
-    // Create an empty array to hold our vegan pie objects
-    // Just like we created our empty string to hold our cards!
-    let veganPieArray = []
-
-    // Loop over that pie arrray
+// Filter for pies
+const filter = (type) => {
+    
+    const filteredArray = []
     for(pie of pies){
-        // Check to see if the pie is vegan
-        if(pie.vegan === true){
-            // If it is push it into our pie array
-            veganPieArray.push(pie)
+        if(pie.skillLevel === type){
+            filteredArray.push(pie)
         }
     }
 
-    // Now we can use our handy dandy function to render our new vegan pie aray to our page!
-    renderToDom(veganPieArray)
+    renderToDom(filteredArray)
 }
 
-// Add an event listener to our button
-// This will listen for us to click our button
-// On click it will invoke our filter function
-veganButton.addEventListener('click', filter)
+// Function to intialize all of our events
+const events = () => {
+    // organized all of our querySelectors
+    const app = document.querySelector("#app")
+    const form = document.querySelector("form")
+    const filterButtons = document.querySelector("#filter-buttons")
 
+    // Submit event listener with an anonymous callback function: https://developer.mozilla.org/en-US/docs/Glossary/Callback_function
+    form.addEventListener('submit', (event) => {
+        event.preventDefault()
+    
+        const newPieObj ={
+            id: pies.length + 1,
+            name: document.querySelector("#pieName").value,
+            crustType: document.querySelector("#pieCrust").value,
+            filling: document.querySelector("#pieFilling").value,
+            vegan: document.querySelector("#isVegan").checked,
+            bakeTemp: document.querySelector("#pieTemp").value,
+            skillLevel: document.querySelector('input[name="skill-level"]:checked').id
+        }
+    
+        pies.push(newPieObj)
+        renderToDom(pies)
+        form.reset()
+    })
 
-const form = document.querySelector('form')
+    // Event listener for our delete
+    app.addEventListener("click", (event) => {
 
-const createPie = (event) =>{
-    event.preventDefault()
+        if(event.target.id.includes("delete")){
+    
+            const [, id] = event.target.id.split("--")
+    
+    
+            const index = pies.findIndex(obj => obj.id === Number(id))
+    
+    
+            pies.splice(index, 1)
+    
+    
+            renderToDom(pies)
+        }
+    })
 
-    const newPieObj ={
-        id: pies.length + 1,
-        name: document.querySelector("#pieName").value,
-        crustType: document.querySelector("#pieCrust").value,
-        filling: document.querySelector("#pieFilling").value,
-        vegan: document.querySelector("#isVegan").checked,
-        bakeTemp: document.querySelector("#pieTemp").value,
-        skillLevel: document.querySelector('input[name="skill-level"]:checked').id
-    }
+    // Event listener for our filters
+    filterButtons.addEventListener("click", (event) => {
+        const id = event.target.id
+        const possibletypes = ["easy", "medium", "hard"]
+    
+        if(id === "all"){
+            renderToDom(pies)
+        } else if(possibletypes.includes(id)){
+            filter(id)
+        }
+    })
+}
 
-    pies.push(newPieObj)
+// Our init function, starts our app
+const startApp = () => {
     renderToDom(pies)
-    form.reset()
+    events()
 }
 
-form.addEventListener('submit', createPie)
-
+startApp()
